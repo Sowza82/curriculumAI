@@ -1,0 +1,79 @@
+import React, { useState } from 'react';
+import { PersonalInfoType } from '../../types/cv.types';
+
+interface PersonalInfoProps {
+  onDataChange: (data: PersonalInfoType) => void;
+}
+
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ onDataChange }) => {
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfoType>({
+    name: '',
+    email: '',
+    phone: '',
+    linkedin: '',
+    summary: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    const newData = { ...personalInfo, [name]: value };
+    setPersonalInfo(newData);
+    onDataChange(newData);
+  };
+
+  return (
+    <div className="p-4 border rounded-md shadow-sm bg-white">
+      <h3 className="text-xl font-semibold mb-4 text-gray-800">Dados Pessoais</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input
+          type="text"
+          name="name"
+          placeholder="Nome Completo"
+          value={personalInfo.name}
+          onChange={handleChange}
+          className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="E-mail"
+          value={personalInfo.email}
+          onChange={handleChange}
+          className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Telefone"
+          value={personalInfo.phone}
+          onChange={handleChange}
+          className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="url"
+          name="linkedin"
+          placeholder="URL do LinkedIn"
+          value={personalInfo.linkedin}
+          onChange={handleChange}
+          className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div className="mt-4">
+        <textarea
+          name="summary"
+          placeholder="Resumo Profissional (máx. 500 caracteres)"
+          value={personalInfo.summary}
+          onChange={handleChange}
+          rows={5}
+          maxLength={500}
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+        />
+        <div className="text-sm text-right text-gray-500 mt-1">
+          {personalInfo.summary.length} / 500
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PersonalInfo;
