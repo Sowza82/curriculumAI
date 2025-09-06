@@ -1,105 +1,105 @@
-CurriculumAI
-Um gerador de currículos inteligente com visualização em tempo real, desenvolvido para otimizar o processo de criação de um currículo profissional de forma rápida e intuitiva.
+# 📄 CurriculumAI
 
-O projeto foi construído com uma arquitetura robusta e moderna, utilizando React com TypeScript para um desenvolvimento mais seguro e escalável. O layout é otimizado para desktop, oferecendo uma experiência de usuário fluida em uma tela dividida.
+Um **gerador de currículos inteligente** com **visualização em tempo real**, desenvolvido para otimizar o processo de criação de um currículo profissional de forma **rápida, moderna e intuitiva**.
 
-🚀 Funcionalidades Principais
-Layout Split-Screen: Tela dividida em duas colunas, com formulário de dados à esquerda e pré-visualização em tempo real à direita.
+O projeto foi construído com uma **arquitetura robusta e escalável**, utilizando **React + TypeScript**, e um layout otimizado para **desktop** em tela dividida (*split-screen*).
 
-Gerenciamento Dinâmico: Listas para adicionar e remover habilidades e experiências profissionais.
+---
 
-Preview em Tempo Real: O currículo é atualizado instantaneamente conforme o usuário digita.
+## 🚀 Funcionalidades Principais
 
-Persistência de Dados: Os dados do currículo são salvos automaticamente no localStorage do navegador para evitar a perda de progresso.
+- **Layout Split-Screen**: tela dividida em duas colunas (formulário à esquerda e pré-visualização à direita).
+- **Gerenciamento Dinâmico**: adição e remoção de habilidades e experiências profissionais.
+- **Preview em Tempo Real**: currículo atualizado instantaneamente conforme o usuário digita.
+- **Persistência de Dados**: informações salvas automaticamente no `localStorage` para evitar perda de progresso.
+- **Exportação para PDF**: geração de currículo em PDF com design profissional.
+- **Aprimoramento com IA** *(opcional)*: integração com serviços de IA para melhorar descrições e resumos profissionais.
 
-Exportação para PDF: Funcionalidade opcional para gerar um arquivo PDF do currículo, com um design profissional e otimizado para impressão.
+---
 
-Aprimoramento com IA: Integração opcional para aprimorar o texto do resumo profissional e das experiências com o uso de inteligência artificial.
+## 💻 Tecnologias Utilizadas
 
-💻 Tecnologias Utilizadas
-Framework: React 19
+- **Framework**: React 19
+- **Linguagem**: TypeScript
+- **Build Tool**: Vite
+- **Estilização**: TailwindCSS v4
+- **PDF**: jsPDF + html2canvas
 
-Linguagem: TypeScript
+---
 
-Build Tool: Vite
+## 📁 Estrutura do Projeto
 
-Estilização: TailwindCSS v4
-
-Geração de PDF: jsPDF e html2canvas
-
-📁 Estrutura do Projeto
-A aplicação segue uma estrutura modular, com responsabilidades bem definidas para cada pasta e arquivo.
-
+```bash
 src/
 ├── components/
-│   ├── Form/           (Componentes de formulário)
-│   ├── Layout/          (Componentes para o layout split-screen)
-│   ├── Preview/         (Componentes de visualização do currículo)
-│   ├── UI/              (Componentes genéricos de UI, como spinner e toasts)
-│   └── ExportButton.tsx (Botão de exportação)
-├── services/          (Lógica para interação com APIs e serviços externos)
-├── hooks/             (Custom hooks para lógica de estado e efeitos)
-├── utils/             (Funções utilitárias e de validação)
-├── types/             (Definições de tipos TypeScript)
-├── api/               (Camada opcional para persistência de dados em servidor)
-└── App.tsx            (Componente principal)
----
+│   ├── Form/            # Componentes de formulário
+│   ├── Layout/          # Componentes do layout split-screen
+│   ├── Preview/         # Visualização do currículo
+│   ├── UI/              # Componentes genéricos (spinner, toast etc.)
+│   └── ExportButton.tsx # Botão de exportação
+├── services/            # Lógica para APIs e serviços externos
+├── hooks/               # Custom hooks para estado e efeitos
+├── utils/               # Funções utilitárias e validações
+├── types/               # Definições de tipos TypeScript
+├── api/                 # Camada opcional de persistência em servidor
+└── App.tsx              # Componente principal
 
+---
 ⚙️ Como Executar o Projeto
-Siga os passos abaixo para clonar o repositório e executar a aplicação em seu ambiente local
----
+🔑 Pré-requisitos
 
-Pré-requisitos
-Node.js (versão 18 ou superior)
+Node.js 18+
 
 npm ou yarn
----
 
-Instalação
+📥 Instalação
+
 Clone o repositório:
-
-Bash
 
 git clone [URL_DO_REPOSITORIO]
 cd curriculumai
 
----
 
 Instale as dependências:
 
-Bash
-
 npm install
-
 # ou
-
 yarn install
+
+
 Execute a aplicação:
 
-Bash
-
 npm run dev
-
 # ou
-
 yarn dev
----
 
-Abra seu navegador e acesse <http://localhost:5173/> para visualizar a aplicação
----
+
+Abra no navegador:
+👉 http://localhost:5173/
+
+
 
 💡 Detalhes de Implementação
-Gerenciamento de Dados
-O estado do currículo é gerenciado pelo custom hook useCVData. Ele utiliza a API de contexto do React para centralizar as informações e o localStorage do navegador para salvar automaticamente o progresso do usuário, garantindo que ele não perca seu trabalho
----
+🗂 Gerenciamento de Dados
 
-Visualização em Tempo Real
-Os componentes FormSection e PreviewSection trabalham em conjunto. O FormSection passa os dados para o App.tsx via callbacks, e o App.tsx propaga o estado atualizado para o PreviewSection, que o renderiza instantaneamente
----
+O estado global é centralizado via custom hook useCVData, com suporte a React Context API.
 
-Exportação para PDF
-A funcionalidade de exportação é controlada pelo componente ExportButton.tsx. Ao ser clicado, ele chama a função exportCVAsPDF do serviço pdfService.ts, que usa html2canvas para capturar a visualização do currículo e jsPDF para criar o arquivo PDF
----
+O progresso é salvo automaticamente no localStorage, garantindo que o usuário não perca seus dados.
 
-Aprimoramento com IA
-O AIEnhanceButton.tsx e o useAIEnhancement se conectam ao serviço aiservice.ts. O hook gerencia o estado de carregamento do botão enquanto a chamada de API (simulada) processa e retorna o texto aprimorado, que então atualiza o formulário.
+⚡ Visualização em Tempo Real
+
+O FormSection envia dados ao App.tsx, que repassa o estado atualizado para o PreviewSection.
+
+A renderização acontece de forma instantânea.
+
+🖨 Exportação para PDF
+
+Controlada pelo componente ExportButton.tsx.
+
+Usa html2canvas para capturar a visualização e jsPDF para gerar o PDF.
+
+🤖 Aprimoramento com IA
+
+O AIEnhanceButton.tsx utiliza o hook useAIEnhancement para chamar o serviço aiservice.ts.
+
+O texto é processado e retornado com melhorias sugeridas pela IA.
