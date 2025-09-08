@@ -10,20 +10,26 @@ interface CVPreviewProps {
 
 const CVPreview: React.FC<CVPreviewProps> = ({ cvData }) => {
   const { personalInfo, skills, experiences } = cvData;
-  const isDataEmpty = !personalInfo?.name && skills?.length === 0 && experiences?.length === 0;
+  const isDataEmpty =
+    !personalInfo?.name &&
+    (!skills || skills.length === 0) &&
+    (!experiences || experiences.length === 0);
 
   return (
-    <div className="w-full h-full p-8 bg-white shadow-lg rounded-lg border border-gray-200 overflow-y-auto">
+    <div className="w-full h-full p-6 bg-gray-50 shadow-lg rounded-2xl border border-gray-200 overflow-y-auto">
       {isDataEmpty ? (
-        <div className="flex items-center justify-center h-full text-gray-500 text-center text-lg">
-          <p>Comece a preencher o formulário para ver seu currículo aqui!</p>
+        <div className="flex items-center justify-center h-full text-gray-500 text-center text-lg italic">
+          <p>
+            Preencha o formulário para visualizar seu currículo com estilo
+            profissional ✨
+          </p>
         </div>
       ) : (
-        <>
+        <div className="space-y-6">
           <PersonalHeader personalInfo={personalInfo} />
           <SkillsSection skills={skills} />
           <ExperienceSection experiences={experiences} />
-        </>
+        </div>
       )}
     </div>
   );
