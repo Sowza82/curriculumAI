@@ -1,12 +1,14 @@
+// src/components/Form/Skills.tsx
+
 import React, { useState } from 'react';
-import { SkillType } from '../../types/cv.types';
+import { type SkillType } from '../../types/cv.types';
 
 interface SkillsProps {
+  skills: SkillType[];
   onSkillsChange: (skills: SkillType[]) => void;
 }
 
-const Skills: React.FC<SkillsProps> = ({ onSkillsChange }) => {
-  const [skills, setSkills] = useState<SkillType[]>([]);
+const Skills: React.FC<SkillsProps> = ({ skills, onSkillsChange }) => {
   const [newSkillName, setNewSkillName] = useState('');
   const [newSkillLevel, setNewSkillLevel] = useState<'Básico' | 'Intermediário' | 'Avançado'>('Básico');
 
@@ -14,7 +16,6 @@ const Skills: React.FC<SkillsProps> = ({ onSkillsChange }) => {
     if (newSkillName.trim() === '') return;
     const newSkill = { name: newSkillName, level: newSkillLevel };
     const updatedSkills = [...skills, newSkill];
-    setSkills(updatedSkills);
     onSkillsChange(updatedSkills);
     setNewSkillName('');
     setNewSkillLevel('Básico');
@@ -22,7 +23,6 @@ const Skills: React.FC<SkillsProps> = ({ onSkillsChange }) => {
 
   const handleRemoveSkill = (index: number) => {
     const updatedSkills = skills.filter((_, i) => i !== index);
-    setSkills(updatedSkills);
     onSkillsChange(updatedSkills);
   };
 

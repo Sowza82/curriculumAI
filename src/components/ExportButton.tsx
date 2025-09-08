@@ -2,19 +2,18 @@
 
 import React, { useState } from 'react';
 import { exportCVAsPDF } from '../services/pdfService';
-import { CVData } from '../types/cv.types.ts'; // ✅ Import com extensão .ts
+import { type CVData } from '../types/cv.types';
 import { truncateText } from '../utils/textProcessing';
 import LoadingSpinner from './UI/LoadingSpinner';
 
 interface ExportButtonProps {
   cvData: CVData;
-  previewRef: React.RefObject<HTMLDivElement>; // recebe a ref do preview
+  previewRef: React.RefObject<HTMLDivElement>;
 }
 
 const ExportButton: React.FC<ExportButtonProps> = ({ cvData, previewRef }) => {
   const [isExporting, setIsExporting] = useState(false);
 
-  // Gera um nome de arquivo dinâmico com base no nome do usuário
   const getFileName = () => {
     const baseName = cvData.personalInfo.name || 'Currículo';
     return truncateText(baseName, 20).replace(/\s+/g, '_');
@@ -22,9 +21,7 @@ const ExportButton: React.FC<ExportButtonProps> = ({ cvData, previewRef }) => {
 
   const handleExport = async () => {
     setIsExporting(true);
-
     const previewElement = previewRef.current;
-
     if (previewElement) {
       try {
         await exportCVAsPDF(previewElement, getFileName());
@@ -36,7 +33,6 @@ const ExportButton: React.FC<ExportButtonProps> = ({ cvData, previewRef }) => {
       console.error('Elemento de pré-visualização não encontrado.');
       alert('Não foi possível encontrar a pré-visualização para exportar.');
     }
-
     setIsExporting(false);
   };
 

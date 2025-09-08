@@ -1,8 +1,7 @@
-// src/hooks/useAIEnhancement.ts
+// src/hooks/useAIEnhancement.ts (CORRIGIDO)
 
 import { useState } from 'react';
-import { enhanceTextWithAI } from '../services/aiservice'; // A ser implementado
-import { AIEnhanceRequest } from '../types/api.types';
+import { type AIEnhanceRequest } from '../types/api.types';
 
 export const useAIEnhancement = () => {
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -12,10 +11,18 @@ export const useAIEnhancement = () => {
     setIsEnhancing(true);
     setError(null);
     try {
-      const response = await enhanceTextWithAI(data); // Chama o serviço
+      console.log('Simulando chamada para a API de IA com os dados:', data);
+      await new Promise(resolve => setTimeout(resolve, 1500)); 
+      const simulatedResponse = { 
+        enhancedText: `${data.text} (este texto foi aprimorado pela simulação da IA!)` 
+      };
+      
       setIsEnhancing(false);
-      return response.enhancedText;
+      return simulatedResponse.enhancedText;
+
     } catch (err) {
+      // A CORREÇÃO ESTÁ AQUI:
+      console.error("Erro na simulação da IA:", err);
       setError("Falha ao aprimorar com IA. Tente novamente.");
       setIsEnhancing(false);
       return null;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SkillType } from '../../types/cv.types';
+import { type SkillType } from '../../types/cv.types';
 
 interface SkillsSectionProps {
   skills: SkillType[];

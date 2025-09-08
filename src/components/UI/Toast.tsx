@@ -1,6 +1,9 @@
+// src/components/UI/Toast.tsx (CORRIGIDO)
+
 import React, { useState, useEffect } from 'react';
 
-type ToastType = 'success' | 'error' | 'info';
+// A CORREÇÃO ESTÁ AQUI:
+export type ToastType = 'success' | 'error' | 'info';
 
 interface ToastProps {
   message: string;
@@ -34,10 +37,13 @@ const Toast: React.FC<ToastProps> = ({ message, type, duration = 3000, onClose }
     >
       <div className="flex items-center justify-between">
         <span>{message}</span>
-        <button onClick={() => {
-          setIsVisible(false);
-          onClose();
-        }} className="ml-4 text-white font-bold">
+        <button 
+          onClick={() => {
+            setIsVisible(false);
+            onClose();
+          }} 
+          className="ml-4 text-white font-bold"
+        >
           &times;
         </button>
       </div>

@@ -1,4 +1,6 @@
-// src/types/api.types.ts
+// src/types/api.types.ts (CORRIGIDO)
+
+import { type CVData } from './cv.types'; // <-- Adicione esta linha
 
 // Define a estrutura da requisição para aprimoramento de texto pela IA
 // O 'type' pode ser 'summary' ou 'experience_description'

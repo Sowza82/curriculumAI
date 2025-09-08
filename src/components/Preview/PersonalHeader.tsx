@@ -1,28 +1,35 @@
+// src/components/Preview/PersonalHeader.tsx (CORRIGIDO)
+
 import React from 'react';
-import { PersonalInfoType } from '../../types/cv.types';
+import { type PersonalInfoType } from '../../types/cv.types';
 
 interface PersonalHeaderProps {
   personalInfo: PersonalInfoType;
 }
 
 const PersonalHeader: React.FC<PersonalHeaderProps> = ({ personalInfo }) => {
-  const { name, email, phone, linkedin, summary } = personalInfo;
-
   return (
-    <div className="border-b-2 border-gray-300 pb-4 mb-4 text-center">
-      <h1 className="text-3xl font-bold text-gray-800">{name || "Seu Nome"}</h1>
-      <div className="text-sm text-gray-600 mt-2 flex justify-center space-x-4">
-        {email && <span>{email}</span>}
-        {phone && <span>{phone}</span>}
-        {linkedin && (
-          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+    <div className="mb-6">
+      <h1 className="text-4xl font-bold text-gray-900">{personalInfo.name || 'Nome do Candidato'}</h1>
+      
+      <div className="flex flex-wrap gap-x-6 gap-y-1 mt-2 text-sm text-gray-600">
+        {personalInfo.email && <span>{personalInfo.email}</span>}
+        {personalInfo.phone && <span>{personalInfo.phone}</span>}
+        {personalInfo.linkedin && (
+          <a 
+            href={personalInfo.linkedin.startsWith('http') ? personalInfo.linkedin : `https://${personalInfo.linkedin}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-blue-600 hover:underline"
+          >
             LinkedIn
           </a>
         )}
       </div>
-      {summary && (
-        <p className="mt-4 text-gray-700 max-w-2xl mx-auto text-sm leading-relaxed">
-          {summary}
+
+      {personalInfo.summary && (
+        <p className="mt-4 text-gray-700 text-justify">
+          {personalInfo.summary}
         </p>
       )}
     </div>

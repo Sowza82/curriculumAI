@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
-import { PersonalInfoType } from '../../types/cv.types';
+// src/components/Form/PersonalInfo.tsx
+
+import React from 'react';
+import { type PersonalInfoType } from '../../types/cv.types';
 
 interface PersonalInfoProps {
+  personalInfo: PersonalInfoType;
   onDataChange: (data: PersonalInfoType) => void;
 }
 
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ onDataChange }) => {
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfoType>({
-    name: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    summary: '',
-  });
-
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ personalInfo, onDataChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    const newData = { ...personalInfo, [name]: value };
-    setPersonalInfo(newData);
-    onDataChange(newData);
+    onDataChange({ ...personalInfo, [name]: value });
   };
 
   return (

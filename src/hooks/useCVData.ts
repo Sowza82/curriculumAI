@@ -1,29 +1,32 @@
-// src/hooks/useCVData.ts
+// src/hooks/useCVData.ts (CORRIGIDO)
 
 import { useEffect, useState } from 'react';
-import { CVData } from '../types/cv.types';
+// A CORREÇÃO ESTÁ AQUI:
+import { type CVData } from '../types/cv.types';
 
 const LOCAL_STORAGE_KEY = 'cv_builder_data';
 
+// Tenta carregar os dados do localStorage na inicialização
+const getInitialData = (): CVData => {
+  try {
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedData ? JSON.parse(storedData) : {
+      personalInfo: { name: '', email: '', phone: '', linkedin: '', summary: '' },
+      skills: [],
+      experiences: [],
+    };
+  } catch (error) {
+    console.error("Erro ao carregar dados do localStorage", error);
+    return {
+      personalInfo: { name: '', email: '', phone: '', linkedin: '', summary: '' },
+      skills: [],
+      experiences: [],
+    };
+  }
+};
+
 export const useCVData = () => {
-  const [cvData, setCvData] = useState<CVData>(() => {
-    // Tenta carregar os dados do localStorage na inicialização
-    try {
-      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-      return storedData ? JSON.parse(storedData) : {
-        personalInfo: { name: '', email: '', phone: '', linkedin: '', summary: '' },
-        skills: [],
-        experiences: [],
-      };
-    } catch (error) {
-      console.error("Erro ao carregar dados do localStorage", error);
-      return {
-        personalInfo: { name: '', email: '', phone: '', linkedin: '', summary: '' },
-        skills: [],
-        experiences: [],
-      };
-    }
-  });
+  const [cvData, setCvData] = useState<CVData>(getInitialData);
 
   // Salva os dados no localStorage sempre que o estado do CV mudar
   useEffect(() => {
@@ -42,5 +45,5 @@ export const useCVData = () => {
     }));
   };
 
-  return { cvData, updateCVData };
+  return { cvData, updateCVData, setCvData };
 };

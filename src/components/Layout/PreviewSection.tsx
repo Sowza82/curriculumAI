@@ -1,5 +1,5 @@
 import React from 'react';
-import { CVData } from '../../types/cv.types';
+import { type CVData } from '../../types/cv.types';
 import ExperienceSection from '../Preview/ExperienceSection';
 import PersonalHeader from '../Preview/PersonalHeader';
 import SkillsSection from '../Preview/SkillsSection';

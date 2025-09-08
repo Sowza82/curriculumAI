@@ -1,7 +1,10 @@
-// src/hooks/useToast.ts
+// src/hooks/useToast.ts (VERSÃO CORRETA)
 
 import { useCallback, useState } from 'react';
-import { ToastType } from '../components/UI/Toast'; // Importa o tipo do componente de UI
+
+// Este é o tipo que será usado para o estado.
+// Ele precisa ser importado do componente visual.
+import { type ToastType } from '../components/UI/Toast';
 
 interface ToastState {
   message: string;
@@ -11,15 +14,14 @@ interface ToastState {
 export const useToast = () => {
   const [toast, setToast] = useState<ToastState | null>(null);
 
-  // Função para mostrar um toast
   const showToast = useCallback((message: string, type: ToastType) => {
     setToast({ message, type });
   }, []);
 
-  // Função para fechar o toast
   const hideToast = useCallback(() => {
     setToast(null);
   }, []);
 
+  // O hook retorna o estado e as funções para controlá-lo.
   return { toast, showToast, hideToast };
 };

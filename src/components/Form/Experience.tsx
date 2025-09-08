@@ -1,12 +1,14 @@
+// src/components/Form/Experience.tsx
+
 import React, { useState } from 'react';
-import { ExperienceType } from '../../types/cv.types';
+import { type ExperienceType } from '../../types/cv.types';
 
 interface ExperienceProps {
+  experiences: ExperienceType[];
   onExperiencesChange: (experiences: ExperienceType[]) => void;
 }
 
-const Experience: React.FC<ExperienceProps> = ({ onExperiencesChange }) => {
-  const [experiences, setExperiences] = useState<ExperienceType[]>([]);
+const Experience: React.FC<ExperienceProps> = ({ experiences, onExperiencesChange }) => {
   const [newExperience, setNewExperience] = useState<ExperienceType>({
     company: '',
     role: '',
@@ -26,9 +28,8 @@ const Experience: React.FC<ExperienceProps> = ({ onExperiencesChange }) => {
   const handleAddExperience = () => {
     if (!newExperience.company || !newExperience.role) return;
     const updatedExperiences = [...experiences, newExperience];
-    setExperiences(updatedExperiences);
     onExperiencesChange(updatedExperiences);
-    setNewExperience({ // Limpa os campos para uma nova experiência
+    setNewExperience({
       company: '',
       role: '',
       period: '',
@@ -39,7 +40,6 @@ const Experience: React.FC<ExperienceProps> = ({ onExperiencesChange }) => {
 
   const handleRemoveExperience = (index: number) => {
     const updatedExperiences = experiences.filter((_, i) => i !== index);
-    setExperiences(updatedExperiences);
     onExperiencesChange(updatedExperiences);
   };
 
