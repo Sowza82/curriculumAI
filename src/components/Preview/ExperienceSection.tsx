@@ -1,15 +1,17 @@
 // src/components/Preview/ExperienceSection.tsx
 
-import React from 'react';
-import { type ExperienceType } from '../../types/cv.types';
+import React from 'react'
+import { type ExperienceType } from '../../types/cv.types'
 
 interface ExperienceSectionProps {
-  experiences: ExperienceType[];
+  experiences: ExperienceType[]
 }
 
-const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
+const ExperienceSection: React.FC<ExperienceSectionProps> = ({
+  experiences,
+}) => {
   if (!experiences || experiences.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -39,7 +41,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ExperienceSection;
+export default ExperienceSection

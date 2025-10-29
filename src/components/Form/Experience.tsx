@@ -1,40 +1,51 @@
 // src/components/Form/Experience.tsx
 
-import React, { useState } from 'react';
-import { type ExperienceType } from '../../types/cv.types';
+import React, { useState } from 'react'
+import { type ExperienceType } from '../../types/cv.types'
 
 interface ExperienceProps {
-  experiences: ExperienceType[];
-  onExperiencesChange: (experiences: ExperienceType[]) => void;
+  experiences: ExperienceType[]
+  onExperiencesChange: (experiences: ExperienceType[]) => void
 }
 
-const Experience: React.FC<ExperienceProps> = ({ experiences, onExperiencesChange }) => {
+const Experience: React.FC<ExperienceProps> = ({
+  experiences,
+  onExperiencesChange,
+}) => {
   const [newExperience, setNewExperience] = useState<ExperienceType>({
     company: '',
     role: '',
     period: '',
     description: '',
     isCurrent: false,
-  });
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type, checked } = e.target as HTMLInputElement
     setNewExperience(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+    }))
+  }
 
   const handleAddExperience = () => {
-    if (!newExperience.company || !newExperience.role) return;
-    onExperiencesChange([...experiences, newExperience]);
-    setNewExperience({ company: '', role: '', period: '', description: '', isCurrent: false });
-  };
+    if (!newExperience.company || !newExperience.role) return
+    onExperiencesChange([...experiences, newExperience])
+    setNewExperience({
+      company: '',
+      role: '',
+      period: '',
+      description: '',
+      isCurrent: false,
+    })
+  }
 
   const handleRemoveExperience = (index: number) => {
-    const updated = experiences.filter((_, i) => i !== index);
-    onExperiencesChange(updated);
-  };
+    const updated = experiences.filter((_, i) => i !== index)
+    onExperiencesChange(updated)
+  }
 
   return (
     <div className="p-6 border rounded-lg shadow-sm bg-white font-sans text-gray-800 mt-6">
@@ -92,11 +103,16 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, onExperiencesChang
 
       <div className="mt-6 space-y-4">
         {experiences.map((exp, index) => (
-          <div key={index} className="p-4 bg-gray-50 border border-gray-200 rounded-lg relative shadow-sm">
+          <div
+            key={index}
+            className="p-4 bg-gray-50 border border-gray-200 rounded-lg relative shadow-sm"
+          >
             <h4 className="font-semibold text-lg">{exp.role}</h4>
             <p className="text-gray-700">{exp.company}</p>
             <p className="text-sm text-gray-500 italic">{exp.period}</p>
-            <p className="text-gray-600 mt-2 whitespace-pre-wrap">{exp.description}</p>
+            <p className="text-gray-600 mt-2 whitespace-pre-wrap">
+              {exp.description}
+            </p>
             <button
               onClick={() => handleRemoveExperience(index)}
               className="absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors font-semibold"
@@ -107,7 +123,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, onExperiencesChang
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Experience;
+export default Experience

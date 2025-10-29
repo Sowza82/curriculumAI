@@ -1,13 +1,13 @@
-import React from 'react';
-import { type SkillType } from '../../types/cv.types';
+import React from 'react'
+import { type SkillType } from '../../types/cv.types'
 
 interface SkillsSectionProps {
-  skills: SkillType[];
+  skills: SkillType[]
 }
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   if (!skills || skills.length === 0) {
-    return null; // Não renderiza a seção se não houver habilidades
+    return null // Não renderiza a seção se não houver habilidades
   }
 
   return (
@@ -17,13 +17,16 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
       </h2>
       <ul className="flex flex-wrap gap-2 text-sm">
         {skills.map((skill, index) => (
-          <li key={index} className="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">
+          <li
+            key={index}
+            className="bg-gray-200 text-gray-800 py-1 px-3 rounded-full"
+          >
             {skill.name} ({skill.level})
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SkillsSection;
+export default SkillsSection

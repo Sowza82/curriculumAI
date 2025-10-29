@@ -1,19 +1,19 @@
-import React from 'react';
-import { CVData } from '../../types/cv.types';
-import ExperienceSection from './ExperienceSection';
-import PersonalHeader from './PersonalHeader';
-import SkillsSection from './SkillsSection';
+import React from 'react'
+import { CVData } from '../../types/cv.types'
+import ExperienceSection from './ExperienceSection'
+import PersonalHeader from './PersonalHeader'
+import SkillsSection from './SkillsSection'
 
 interface CVPreviewProps {
-  cvData: CVData;
+  cvData: CVData
 }
 
 const CVPreview: React.FC<CVPreviewProps> = ({ cvData }) => {
-  const { personalInfo, skills, experiences } = cvData;
+  const { personalInfo, skills, experiences } = cvData
   const isDataEmpty =
     !personalInfo?.name &&
     (!skills || skills.length === 0) &&
-    (!experiences || experiences.length === 0);
+    (!experiences || experiences.length === 0)
 
   return (
     <div className="w-full h-full p-6 bg-gray-50 shadow-lg rounded-2xl border border-gray-200 overflow-y-auto">
@@ -32,7 +32,7 @@ const CVPreview: React.FC<CVPreviewProps> = ({ cvData }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CVPreview;
+export default CVPreview

@@ -1,18 +1,23 @@
 // src/components/Form/PersonalInfo.tsx
 
-import React from 'react';
-import { type PersonalInfoType } from '../../types/cv.types';
+import React from 'react'
+import { type PersonalInfoType } from '../../types/cv.types'
 
 interface PersonalInfoProps {
-  personalInfo: PersonalInfoType;
-  onDataChange: (data: PersonalInfoType) => void;
+  personalInfo: PersonalInfoType
+  onDataChange: (data: PersonalInfoType) => void
 }
 
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ personalInfo, onDataChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    onDataChange({ ...personalInfo, [name]: value });
-  };
+const PersonalInfo: React.FC<PersonalInfoProps> = ({
+  personalInfo,
+  onDataChange,
+}) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    onDataChange({ ...personalInfo, [name]: value })
+  }
 
   return (
     <div className="p-6 border rounded-lg shadow-sm bg-white font-sans text-gray-800">
@@ -68,7 +73,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ personalInfo, onDataChange 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PersonalInfo;
+export default PersonalInfo

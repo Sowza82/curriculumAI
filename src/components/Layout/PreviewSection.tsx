@@ -1,13 +1,13 @@
 // src/components/Layout/PreviewSection.tsx
 
-import React from 'react';
-import { type CVData } from '../../types/cv.types';
-import PersonalHeader from '../Preview/PersonalHeader';
-import SkillsSection from '../Preview/SkillsSection';
-import ExperienceSection from '../Preview/ExperienceSection';
+import React from 'react'
+import { type CVData } from '../../types/cv.types'
+import ExperienceSection from '../Preview/ExperienceSection'
+import PersonalHeader from '../Preview/PersonalHeader'
+import SkillsSection from '../Preview/SkillsSection'
 
 interface PreviewSectionProps {
-  cvData: CVData;
+  cvData: CVData
 }
 
 const PreviewSection: React.FC<PreviewSectionProps> = ({ cvData }) => {
@@ -25,7 +25,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({ cvData }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PreviewSection;
+export default PreviewSection

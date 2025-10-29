@@ -1,35 +1,40 @@
 // src/components/UI/Toast.tsx (CORRIGIDO)
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react'
 
 // A CORREÇÃO ESTÁ AQUI:
-export type ToastType = 'success' | 'error' | 'info';
+export type ToastType = 'success' | 'error' | 'info'
 
 interface ToastProps {
-  message: string;
-  type: ToastType;
-  duration?: number;
-  onClose: () => void;
+  message: string
+  type: ToastType
+  duration?: number
+  onClose: () => void
 }
 
 const typeClasses = {
   success: 'bg-green-500',
   error: 'bg-red-500',
   info: 'bg-blue-500',
-};
+}
 
-const Toast: React.FC<ToastProps> = ({ message, type, duration = 3000, onClose }) => {
-  const [isVisible, setIsVisible] = useState(true);
+const Toast: React.FC<ToastProps> = ({
+  message,
+  type,
+  duration = 3000,
+  onClose,
+}) => {
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(false);
-      onClose();
-    }, duration);
-    return () => clearTimeout(timer);
-  }, [duration, onClose]);
+      setIsVisible(false)
+      onClose()
+    }, duration)
+    return () => clearTimeout(timer)
+  }, [duration, onClose])
 
-  if (!isVisible) return null;
+  if (!isVisible) return null
 
   return (
     <div
@@ -37,18 +42,18 @@ const Toast: React.FC<ToastProps> = ({ message, type, duration = 3000, onClose }
     >
       <div className="flex items-center justify-between">
         <span>{message}</span>
-        <button 
+        <button
           onClick={() => {
-            setIsVisible(false);
-            onClose();
-          }} 
+            setIsVisible(false)
+            onClose()
+          }}
           className="ml-4 text-white font-bold"
         >
           &times;
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Toast;
+export default Toast

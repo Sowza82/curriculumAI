@@ -1,10 +1,10 @@
 // src/components/Preview/PersonalHeader.tsx
-import React from 'react';
-import { type PersonalInfoType } from '../../types/cv.types';
-import { DocumentTextIcon } from '@heroicons/react/24/solid';
+import { DocumentTextIcon } from '@heroicons/react/24/solid'
+import React from 'react'
+import { type PersonalInfoType } from '../../types/cv.types'
 
 interface PersonalHeaderProps {
-  personalInfo: PersonalInfoType;
+  personalInfo: PersonalInfoType
 }
 
 const PersonalHeader: React.FC<PersonalHeaderProps> = ({ personalInfo }) => {
@@ -23,7 +23,11 @@ const PersonalHeader: React.FC<PersonalHeaderProps> = ({ personalInfo }) => {
           {personalInfo.phone && <span>{personalInfo.phone}</span>}
           {personalInfo.linkedin && (
             <a
-              href={personalInfo.linkedin.startsWith('http') ? personalInfo.linkedin : `https://${personalInfo.linkedin}`}
+              href={
+                personalInfo.linkedin.startsWith('http')
+                  ? personalInfo.linkedin
+                  : `https://${personalInfo.linkedin}`
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
@@ -40,7 +44,7 @@ const PersonalHeader: React.FC<PersonalHeaderProps> = ({ personalInfo }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PersonalHeader;
+export default PersonalHeader
